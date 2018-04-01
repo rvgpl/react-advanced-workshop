@@ -1,5 +1,5 @@
 import React from 'react';
-
+import ReactDOM from 'react-dom';
 class Modal extends React.Component {
 
   render() {
@@ -10,13 +10,17 @@ class Modal extends React.Component {
      const modalStyle = {
         background: 'transparent',
         width: '100%',
-        textAlign: 'center'
+        textAlign: 'center',
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)'
       };
 
 
-    return <div style={modalStyle} >
+    return ReactDOM.createPortal(<div style={modalStyle} >
         {this.props.children}
-      </div>;
+      </div>, document.getElementById("modal"));
   }
 }
 
