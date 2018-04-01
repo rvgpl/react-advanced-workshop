@@ -5,7 +5,7 @@ import { counterIncrement, counterDecrement } from './actions'
 import { Counter } from './index'
 
 describe('Counter component connected with redux store', () => {
-  
+
   // A sample test
   it('should renders the count', () => {
     const props = {
@@ -23,8 +23,10 @@ describe('Counter component connected with redux store', () => {
       count: 3
     }
 
-    // Write the test here
-    // ...
+    const wrapper = shallow(<Counter {...props} />);
+    wrapper.find('Button.increment').simulate('click')
+
+    expect(props.dispatch).toHaveBeenCalledWith(counterIncrement())
   })
 
   it('dispatches the right action for decrementing', () => {
@@ -33,7 +35,9 @@ describe('Counter component connected with redux store', () => {
       count: 3
     }
 
-    // Write the test here
-    // ...
+    const wrapper = shallow(<Counter {...props} />)
+    wrapper.find('Button.decrement').simulate('click')
+
+    expect(props.dispatch).toHaveBeenCalledWith(counterDecrement())
   })
 })
