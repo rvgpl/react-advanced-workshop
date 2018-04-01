@@ -6,6 +6,8 @@ import Link from "../../components/common/link";
 import Avatar from "../../components/library/avatar";
 import Description from "./description";
 
+import ErrorBoundary from "../ErrorBoundary";
+
 const ProfileCard = styled(Card)`
   text-align: center;
   box-sizing: border-box;
@@ -18,13 +20,15 @@ const ProfileCard = styled(Card)`
 `;
 const Profile = ({ userProfile }) => {
   return (
-    <ProfileCard>
-      <Avatar url={userProfile.photo} />
-      <br />
-      <Link url={userProfile.url}>{userProfile.name}</Link>
-      <br />
-      <Description content={userProfile.bio || userProfile.error} />
-    </ProfileCard>
+    <ErrorBoundary>
+      <ProfileCard>
+        <Avatar url={userProfile.photo} />
+        <br />
+        <Link url={userProfile.url}>{userProfile.name}</Link>
+        <br />
+        <Description content={userProfile.bio || userProfile.error} />
+      </ProfileCard>
+    </ErrorBoundary>
   );
 };
 export default Profile;
