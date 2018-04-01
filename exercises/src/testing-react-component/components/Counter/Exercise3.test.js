@@ -2,7 +2,7 @@ import React from "react";
 import { shallow } from "enzyme";
 import Counter from ".";
 
-// Exasice #3
+// Exercise #3
 describe("Initial state of the counter", () => {
 
   // A Sample bad test
@@ -12,7 +12,7 @@ describe("Initial state of the counter", () => {
   });
 
   it("initial state should be 0", () => {
-    // We should write test from the user prospective.
-    // ...
+    const wrapper = shallow(<Counter />);
+    expect(wrapper.find(".count").text()).toEqual("0");
   });
 });
