@@ -29,11 +29,11 @@ export default class Count extends Component {
         <li className="Counter__item">
           <div className="Counter__actions">
             <span onClick={ onDecrement } className={ this.subtractClassName }>
-              <img src={ subtractIcon } />
+              <img src={ subtractIcon } alt="decrement"/>
             </span>
             <p className="Counter__count">{ value }</p>
             <span onClick={ onIncrement } className={ this.addClassName }>
-              <img src={ addIcon } />
+              <img src={ addIcon } alt="increment"/>
             </span>
           </div>
         </li>
