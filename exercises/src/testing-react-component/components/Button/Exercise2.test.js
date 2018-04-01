@@ -2,11 +2,12 @@ import React from "react";
 import { shallow } from "enzyme";
 import Button from ".";
 
-// Exasice #2
+// Exercise #2
 describe("Interaction", () => {
   it("Callback props onClick", () => {
-    // Write test for button click. Tips: Use a mock (spy) function.
     const spyFunc = jest.fn()
-    // ...
+    const component = shallow(<Button onClick={spyFunc}/>);
+    component.find('button').simulate('click')
+    expect(spyFunc).toHaveBeenCalled();
   })
 });
