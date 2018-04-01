@@ -3,7 +3,7 @@ import { shallow } from "enzyme";
 import renderer from "react-test-renderer";
 import Button from ".";
 
-// Exasice #1
+// Exercise #1
 describe("Rendering", () => {
   // A sample test.
   it("Should render a button", () => {
@@ -12,50 +12,41 @@ describe("Rendering", () => {
   });
 
   it("Should render defaults", () => {
-    // Write test here for default button
-    // ...
+    const tree = renderer.create(<Button />).toJSON();
+    expect(tree).toMatchSnapshot();
   });
 
   describe("Render based on size", () => {
     it("Small Button", () => {
-      // Write test here for 'small' button.
-      // ...
+      const wrapper = shallow(<Button size="small"/>);
+      expect(wrapper.find('.btn-sm').length).toEqual(1);
     });
 
     it("Medium Button", () => {
-      // Write test here for 'medium' button.
-      // ...
+      const wrapper = shallow(<Button size="medium"/>);
+      expect(wrapper.find('.btn-md').length).toEqual(1);
     });
 
     it("Large Button", () => {
-      // Write test here for 'large' button.
-      // ...
+      const wrapper = shallow(<Button size="large"/>);
+      expect(wrapper.find('.btn-lg').length).toEqual(1);
     });
   });
 
-  describe("Button disabled based on props", () => {
+  describe("Button is disabled based on props", () => {
     it("Button should have disabled attribute", () => {
       const wrapper = shallow(<Button disabled={true}/>);
-      // Expect a button with disabled props
-      // ...
+      expect(wrapper.find('button').prop('disabled')).toBeTruthy();
     });
 
-    it("Button should not have disabled attribute", () => {
+    it("Button does not have disabled attribute", () => {
       const wrapper = shallow(<Button disabled={false}/>);
-      // Expect a button without disabled props
-      // ...
+      expect(wrapper.find('button').prop('disabled')).toBeFalsy();
     });
 
-    it("Button should be disabled class", () => {
+    it("Button should have disabled class", () => {
       const wrapper = shallow(<Button disabled={true}/>);
-      // Expect a button with disabled class
-      // ...
-    });
-
-    it("Button should be disabled class", () => {
-      const wrapper = shallow(<Button disabled={false}/>);
-      // Expect a button without disabled class
-      // ...
+      expect(wrapper.find('.disabled').length).toEqual(1);
     });
   });
 });
