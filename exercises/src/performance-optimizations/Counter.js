@@ -35,8 +35,9 @@ class Counter extends Component {
   };
 
   // Implement shouldComponentUpdate to avoid unnecessary re-renders.
-  // shouldComponentUpdate(nextProps, nextState) {
-  // }
+  shouldComponentUpdate(nextProps, nextState) {
+    return nextState.count !== this.state.count
+  }
 
   render() {
     const { count } = this.state;
